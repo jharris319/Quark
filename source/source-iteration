@@ -1,0 +1,6 @@
+while(a != b) do
+	print("loop")
+	if (a > 2) then
+		a = b % a
+	fi
+end

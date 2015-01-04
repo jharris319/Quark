@@ -1,0 +1,9 @@
+if (a != b) then
+	print("foo")
+elif (b != c) then
+	print("bar")
+elif (c != d) then
+	print("roo")
+else
+	print("baz")
+fi

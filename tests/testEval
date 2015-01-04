@@ -1,0 +1,49 @@
+## Definitions
+$string = "string"
+$someString = "I'm a string"
+$someInteger = 403
+$someFloat = 4.03
+$someAdd = 1 + 2 + 3
+$someSub = 1 - 2 - 3
+$someMult = 1 * 2 * 3
+$someDiv = 2 / 3
+$a = -2
+$b = 3
+
+## Statements
+if (2 != 2) then
+	print("if")
+elif (2 != 2) then
+	print("elif1")
+elif (2 == 2) then
+	print("elif2")
+else
+	print("no dice!")
+fi
+
+while(a != b) do
+	print("loop")
+	if (a <= 2) then
+		a = b % a
+		finished = true
+	else
+		apples[b] = 5
+	fi
+end
+
+return .234 * 333.999
+
+## Function definitions
+def baz()
+	print("foo!")
+end
+
+def foo(var1, var2, var3)
+	return (var1 + var2 + var3)
+end
+
+## Function calls
+foo(5, roo, foo)
+
+## Example print statement
+print("hello world!")

@@ -1,0 +1,118 @@
+# Program
+program			: definition
+				| definition program
+				| statement
+				| statement program
+
+
+# Definitions/Calls
+definition		: variable definition
+				| function definition
+				| class definition
+
+varDef			: $ ID ASSIGN expr
+				| $ ID ASSIGN primary
+				| $ ID ASSIGN array
+
+funcDef			: DEF ID OPAREN optParamList CPAREN block END
+
+classDef		: CLASS ID classBlock
+
+classBlock      : varDef
+				| varDef classBlock
+				| funcDef
+				| funcDef classBlock
+				| statement
+				| statement classBlock
+
+optParamList	| paramList
+				: epsilon
+
+paramList		: PRIMARY
+				| PRIMARY COMMA paramList
+
+funcCall		: ID OPAREN optList CPAREN
+
+block			: statementList
+				| varDef
+				| epsilon
+
+
+# Statements
+statementList	: statement
+				| statement statementList
+
+statement		: expression        #statementBlock?
+				| ifStatement
+				| whileStatement
+				| printStatement
+
+ifStatement		: IF OPAREN logicalExpr CPAREN THEN block optElif optElse FI
+
+whileStatement	: WHILE OPAREN logicalExpr CPAREN DO block END
+
+printStatement	: PRINT OPAREN STRING CPAREN
+
+returnStatement : RETURN expression
+
+optElse			: ELSE COLON block
+				| epsilon
+
+
+# Arrays/Lists
+array			: ARRAY OBRACKET optInteger CBRACKET
+
+optInteger		: INTEGER
+				| epsilon
+
+list			: item
+				| item COMMA list
+
+optList			: list
+				| epsilon
+
+
+# Math
+expression		: number						#Might need vars and ids?
+				| number operator expression
+				| ID
+				| ID operator expression
+				| ID OBRACKET expression CBRACKET epression		#Oops, fix this
+
+number			: INTEGER
+				| REAL
+
+operator		: PLUS
+				| MINUS
+				| MULTIPLY
+				| DIVIDE
+				| MODULUS
+				| EXPONENT
+				| ASSIGN
+
+
+# Booleans
+logicExpr		: logicPrimary
+				| primary
+				| logicPrimary logicOperator logicalExpr #TODO: true not true
+				| primary logicOperator logicalExpr
+
+logicOperator	: LT
+				| LTE
+				| GTE
+				| GT
+				| EQUAL
+				| AND
+				| OR
+				| NOT
+
+logicPrimary	: TRUE
+				| FALSE
+				| ID
+
+
+# Primaries
+primary			: INTEGER
+				| REAL
+				| STRING
+				| ID
