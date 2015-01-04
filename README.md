@@ -8,11 +8,11 @@ A programming language written in Python.
 Quark currently contains a working grammar, lexer, recognizer, pretty printer, and the beginnings of an evaluator. Currently, the evaluator works for variable definitons, if statements, expressions, print statements, and logic expressions.
 
 
-##### Parse Tree #####
+#### Parse Tree ####
 ![Parse Tree Example](https://github.com/jharris319/Quark/blob/master/graphviz/data.png)
 
 
-##### Syntax #####
+#### Syntax ####
 
 ###### Definitions ######
 ```python
